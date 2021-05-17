@@ -1,0 +1,59 @@
+<template>
+    <lightning-card variant="narrow" icon-name="standard:case">
+        <h1 slot="title">Casos Interplanetarios</h1>
+        <p slot="title"></p>
+        <table style="width:50%">
+            <tr>
+                <th>
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </table>
+        <lightning-datatable data={data} columns={columns} onrowaction={handleRowAction} key-field="Id">
+        </lightning-datatable>
+        <div role="dialog" tabindex="-1" data-id="editDialog" class="slds-modal" data-action-type=""
+            data-modal="editDialog">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <h2 id="header" class="slds-text-heading--medium">Escaneo interplanetario</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium" data-id="recordFieldContainer">
+                    <template if:true={showDetail}>
+                        <div class="slds-modal__content modalBody">
+                            <template if:true={showSpinner}>
+                                <div class="  background-color: rgba(0, 0, 0, 0.10);
+                                margin-top: 200px;
+                                margin-bottom: 200px; ">
+                                    <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+                                </div>
+                            </template>
+                            <div class="slds-p-around_small">
+                                <lightning-record-view-form record-id={record.Id} object-api-name="Case">
+                                    <div class="slds-box slds-theme_default">
+                                        <lightning-output-field field-name="Subject">
+                                        </lightning-output-field>
+                                        <lightning-output-field field-name="Status">
+                                        </lightning-output-field>
+                                        <lightning-output-field field-name="Contact_URL__c">
+                                        </lightning-output-field>
+                                        <lightning-output-field field-name="Description">
+                                        </lightning-output-field>
+                                    </div>
+                                </lightning-record-view-form>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning-button variant="brand" label="Escaneo interplanetario" title="Escaneo interplanetario"
+                        onclick={handleCallWebservice} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={handleClick}
+                        class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </div>
+        <div class="slds-backdrop " data-id="dialogBack"></div>
+    </lightning-card>
+</template>
